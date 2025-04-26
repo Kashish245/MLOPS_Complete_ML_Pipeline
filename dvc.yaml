@@ -1,4 +1,4 @@
-stages :
+stages:
   data_ingestion:
     cmd: python src/data_ingestion.py
     deps:
@@ -25,7 +25,7 @@ stages :
     - data/processed
   model_building:
     cmd: python src/model_building.py
-    deps: 
+    deps:
     - data/processed
     - src/model_building.py
     params:
@@ -38,7 +38,14 @@ stages :
     deps:
     - models/model.pkl
     - src/model_evaluation.py
-    metrics :
+    metrics:
     - C:\Users\Lenovo\Desktop\mlops_youtube_series\YT-MLOPS-Complete-ML-Pipeline\reports\metrics.json
 
 
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
+params:
+- dvclive/params.yaml
