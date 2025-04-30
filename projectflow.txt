@@ -25,7 +25,21 @@ Expermients with DVC:
 18> Now git add, commit, push
 
 
+Adding a remote S3 storage to DVC:   
+19>  Login to AWS console          ###### AWS console payment issue occures
+20> create an IAM user (straight forward process)    ### IAM service for make user (identity access management)
+21> create S3 (enter unique name and create)    ### searech IAM and S3 in AWS console
+22> pip install dvc[s3]     ### allow to connect dvc and s3
+23> pip install awscli    ### id nd password ki help se user ko project me configure krne k liye awscli
+24> "aws configure" - on terminal     ### enter new access key id and secret key id otherwise if you want use old ids thn just press enter. and region name -> in console there is a optionN.Virginia (top right side) right side value . remaining are by default.  
+25> dvc remote add -d dvcstore s3://bucketname    ### dvcstore (store name manually anything) bucketname -> jo console me bucket bnate time rkha tha. after this step check .dvc/config file. configuration saved.
+26> dvc commit-push the exp outcome that you want to keep    ### best experiment ko reproduce kr lo(dvc exp apply exp_name) thn we don't need to dvc add manually simply do(dvc commit & dvc push). pipeline ke corresponding data push hokr s3 bucket me chla jaega.
+27> finally git add, commit, push     ### commit_msg: "S3 storage added as remote"
 
+
+Extra:
+1> Remove/delete AWS resources   ### in console-> bucket-> do empty bucket-> delete the bucket  -> IAm user -> delete the IAM user(mlops_ustad)
+2> Adding stage to dvc.yaml: "dvc stage add -n data_ingestion -d src/data_ingestion.py -o data/raw python src/data_ingestion.py"      ### dvc.yaml ko manually na likh kr is code se likh skte h.
 
 -------------------------------------------------------------------------------
 
